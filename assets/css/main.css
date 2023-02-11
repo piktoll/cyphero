@@ -22,6 +22,10 @@ footer {
     text-align: center;
 }
 
+hr {
+    border: 0.05rem solid var(--lime)
+}
+
 .number-el {
     font-size: 3rem;
     text-align: center;
