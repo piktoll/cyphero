@@ -25,21 +25,19 @@ window.onload = function () {
                 arr.push(n);
             }
             app.mystery = parseInt(arr.join(''));
-            // numberEl.innerHTML = app.mystery;
+            console.log(app.mystery);
         },
         checkInput: function (num) {
             // only execute if all digits are different
 
 
-            const basis = Array.from(app.mystery.toString(), n => +n);
-            const check = Array.from(num.toString(), n => +n);
+            const basis = Array.from(app.mystery.toString(), n => parseInt(n));
+            const check = Array.from(num.toString(), n => parseInt(n));
 
             let wrongPlace = 0, rightPlace = 0;
 
             for (let i = 0; i < check.length; i++) {
                 if (basis.includes(check[i])) {
-                    console.log(i);
-                    console.log(basis.indexOf(check[i]));
                     (basis.indexOf(check[i]) == i)
                         ? rightPlace++
                         : wrongPlace++;
@@ -53,6 +51,9 @@ window.onload = function () {
         playerWon: function () {
             echoEl.innerHTML += `Trying ${num}... Correct answer. Code cracked successfully!`;
         },
+        ifDifferent: function (num) {
+
+        },
     };
 
     document.title = app.returnTitle();
@@ -64,10 +65,10 @@ window.onload = function () {
     footerEl.innerHTML = `${app.returnTitle()} CC-BY-SA&nbsp;3.0 ${app.year} ${app.publisher}.`;
 
     const echoEl = document.getElementsByClassName('echo-el')[0];
-    const numberEl = document.getElementsByClassName('number-el')[0];
     const inputEl = document.getElementsByClassName("input-el")[0];
     const buttonEl = document.getElementsByClassName("button-el")[0];
     buttonEl.addEventListener("click", function () {
+        console.log(app.ifDifferent(inputEl.value));
         app.checkInput(inputEl.value);
     });
 
