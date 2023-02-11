@@ -28,7 +28,7 @@ function generateNumber() {
 
 function checkInput() {
     const num = 4269;
-    const check = num.split('');
+    const check = num.split("");
     let wrongPlace, rightPlace = 0;
 
     echoEl.innerHTML = `Trying ${num}... Numbers that are included but at the wrong place: ${wrongPlace}, numbers that are included and at the right place ${rightPlace}<br />`;
