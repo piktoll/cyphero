@@ -32,16 +32,26 @@ window.onload = function () {
 
             return parseInt(arr.join(''));
         },
+        numToArray: function (num) {
+            /*
+                A one-line way to create an array from a number.
+            */
+            return Array.from(num.toString(), n => parseInt(n));
+        },
         checkInput: function (num) {
-            // only execute if all digits are different
-
-            const basis = Array.from(app.mystery.toString(), n => parseInt(n));
-            const check = Array.from(num.toString(), n => parseInt(n));
+            /* const basis = Array.from(app.mystery.toString(), n => parseInt(n));
+            const check = Array.from(num.toString(), n => parseInt(n)); */
+            const basis = app.numToArray(app.mystery);
+            const check = app.numToArray(num);
 
             let wrongPlace = 0, rightPlace = 0;
 
             for (let i = 0; i < check.length; i++) {
                 if (basis.includes(check[i])) {
+                    /*
+                        if the number is included in the basis and is at the same index, we increment the right place,
+                        else if the number is included in the basis but is not at the same index, we increment the wrong place
+                    */
                     (basis.indexOf(check[i]) == i)
                         ? rightPlace++
                         : wrongPlace++;
@@ -55,8 +65,11 @@ window.onload = function () {
         playerWon: function () {
             echoEl.innerHTML += `<p>Trying ${num}... Correct answer. Code cracked successfully!</p>`;
         },
+        ifValid: function (num) {
+            return (num.length === 4 && num != null && num != Infinity && app.ifDifferent(num));
+        },
         ifDifferent: function (num) {
-            return (num.length === 4 && num != null && num != Infinity);
+            return true;
         },
     };
 
@@ -73,8 +86,12 @@ window.onload = function () {
     });
 
     const buttonEl = document.getElementsByClassName("button-el")[0];
+
     buttonEl.addEventListener("click", function () {
-        if (app.ifDifferent(inputEl.value))
+        /*
+            We will only process input if it is valid and all digits are different
+        */
+        if (app.ifValid(inputEl.value))
             app.checkInput(inputEl.value);
     });
 
