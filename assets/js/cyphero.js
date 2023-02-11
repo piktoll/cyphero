@@ -51,7 +51,7 @@ window.onload = function () {
             echoEl.innerHTML += `Trying ${num}... Correct answer. Code cracked successfully!`;
         },
         ifDifferent: function (num) {
-
+            return (num);
         },
     };
 
