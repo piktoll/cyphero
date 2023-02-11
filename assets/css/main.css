@@ -23,7 +23,8 @@
     border-radius: var(--normal-radius);
 }
 
-.input-el, .button-el {
+.input-el,
+.button-el {
     box-sizing: border-box;
     padding: 0.5rem;
     border: 0.05rem solid var(--lime);
