@@ -10,7 +10,8 @@ window.onload = function () {
         },
         startGame: function () {
             app.mystery = app.generateNumber();
-            echoEl.innerHTML += `<p>${app.title} ${app.desc}</p>`;
+
+            echoEl.innerHTML += `<p>${app.title} &ndash; ${app.desc}</p><hr />`;
             echoEl.innerHTML += `<p>Welcome to Cyphero! The game is all about cracking a 4-digit code. The code consists of four different digits and the first digit cannot be zero. Happy guessing!</p>`;
         },
         generateNumber: function () {

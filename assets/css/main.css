@@ -17,6 +17,11 @@
     font-family: "Roboto Mono", monospace;
 }
 
+footer {
+    font-family: sans-serif;
+    text-align: center;
+}
+
 .number-el {
     font-size: 3rem;
     text-align: center;
