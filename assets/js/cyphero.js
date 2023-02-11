@@ -29,7 +29,7 @@ function generateNumber() {
         arr.push(n);
     }
 
-    game.code = Number.arr.join('');
+    game.code = arr.join('');
     numberEl.innerHTML = game.code;
 }
 
