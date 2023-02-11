@@ -1,0 +1,33 @@
+:root {
+    --shade: #444;
+    --lime: #0f0;
+
+    --normal-radius: 0.5rem;
+    --light-radius: 0.25rem;
+}
+
+* {
+    font-family: monospace;
+}
+
+.number-el {
+    font-size: 3rem;
+    text-align: center;
+}
+
+.terminal-el {
+    background: var(--shade);
+    color: var(--lime);
+    box-sizing: border-box;
+    padding: 1rem;
+    border-radius: var(--normal-radius);
+}
+
+.input-el, .button-el {
+    box-sizing: border-box;
+    padding: 0.5rem;
+    border: 0.05rem solid var(--lime);
+    background: var(--shade);
+    color: var(--lime);
+    border-radius: var(--light-radius);
+}
