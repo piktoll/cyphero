@@ -75,6 +75,8 @@ window.onload = function () {
         },
         playerWon: function () {
             echoEl.innerHTML += `<p>Trying ${num}... Correct answer. Congratulations, code cracked successfully!</p>`;
+            inputEl.style.display = 'none';
+            buttonEl.style.display = 'none';
         },
         ifValid: function (num) {
             return (num[0] != 0 && num.length === 4 && num != null && num != Infinity);
