@@ -11,6 +11,7 @@ window.onload = function () {
         },
         startGame: function () {
             app.mystery = app.generateNumber();
+            console.log(app.mystery);
 
             echoEl.innerHTML += `<p>${app.title} &ndash; ${app.desc}</p><hr />`;
             echoEl.innerHTML += `<p>Welcome to Cyphero! The game is all about cracking a 4-digit code. The code consists of four different digits and the first digit cannot be zero. Happy guessing!</p>`;
@@ -69,7 +70,7 @@ window.onload = function () {
             echoEl.innerHTML += `<p>Trying ${num}... Correct answer. Code cracked successfully!</p>`;
         },
         ifValid: function (num) {
-            return (num.length === 4 && num != null && num != Infinity && app.ifDifferent(num));
+            return (num[0] !== 0 && num.length === 4 && num != null && num != Infinity && app.ifDifferent(num));
         },
         ifDifferent: function (num) {
             return true;
@@ -94,6 +95,7 @@ window.onload = function () {
         /*
             We will only process input if it is valid and all digits are different
         */
+        console.log(inputEl.value[0]);
         if (app.ifValid(inputEl.value))
             app.checkInput(inputEl.value);
     });
