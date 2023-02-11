@@ -38,6 +38,10 @@ window.onload = function () {
             let wrongPlace = 0, rightPlace = 0;
 
             if (basis === check) {
+                console.log(basis);
+                console.log(check);
+                console.log(basis === check);
+                console.log(basis == check);
                 app.playerWon();
             } else {
                 for (let i = 0; i < check.length; i++) {
