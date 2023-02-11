@@ -31,6 +31,10 @@
     height: 20rem;
 }
 
+.user-el {
+    display: flex;
+}
+
 .input-el,
 .button-el {
     box-sizing: border-box;
