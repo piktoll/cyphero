@@ -28,18 +28,25 @@ window.onload = function () {
             numberEl.innerHTML = app.mystery;
         },
         checkInput: function (num) {
-            const check = num.toString().split('');
-            let wrongPlace, rightPlace = 0;
+            console.log(num);
+            console.log(app.mystery);
+
+            const basis = Array.from(app.mystery.toString(), n => +n);
+            const check = Array.from(num.toString(), n => +n);
+
+            console.log(check);
+            let wrongPlace = 0, rightPlace = 0;
 
             if (num === app.mystery) {
-                playerWon();
+                app.playerWon();
             } else {
                 for (let i = 0; i < check.length; i++) {
-                    (check[i])
+                    if (basis.includes(check[i]))
+                        wrongPlace++;
                 }
-            }
 
-            echoEl.innerHTML = `Trying ${num}... Numbers that are included but at the wrong place: ${wrongPlace}, numbers that are included and at the right place ${rightPlace}<br />`;
+                echoEl.innerHTML = `Trying ${num}... Numbers that are included but at the wrong place: ${wrongPlace}, numbers that are included and at the right place ${rightPlace}<br />`;
+            }
         },
         playerWon: function () {
             echoEl.innerHTML = `Correct answer. Code cracked successfully!`;
@@ -52,7 +59,7 @@ window.onload = function () {
     headerEl.innerHTML = `<h1>${app.title}</h1><h3>${app.desc}</h3>`;
 
     const footerEl = document.getElementsByTagName("footer")[0].getElementsByTagName("p")[0];
-    footerEl.innerHTML = `${appTitle} CC-BY-SA&nbsp;3.0 ${app.year} ${app.publisher}.`;
+    footerEl.innerHTML = `${app.returnTitle()} CC-BY-SA&nbsp;3.0 ${app.year} ${app.publisher}.`;
 
     const echoEl = document.getElementsByClassName('echo-el')[0];
     const numberEl = document.getElementsByClassName('number-el')[0];
@@ -60,7 +67,6 @@ window.onload = function () {
     const buttonEl = document.getElementsByClassName("button-el")[0];
     buttonEl.addEventListener("click", function () {
         app.checkInput(inputEl.value);
-        console.log(inputEl.value);
     });
 
     app.generateNumber();
