@@ -6,6 +6,12 @@ const buttonEl = document.getElementsByClassName("button-el")[0];
 footerEl.innerHTML = `Cyphero CC-BY-SA&nbsp;3.0 2023 Senrima Team.`;
 buttonEl.addEventListener("click", checkInput);
 
+const game = {
+    title: 'Cyphero',
+    slogan: 'Crack the Code!',
+    code: 0,
+}
+
 function generateNumber() {
     let arr = [];
 
@@ -23,13 +29,18 @@ function generateNumber() {
         arr.push(n);
     }
 
-    numberEl.innerHTML += arr.join('') + '<br />';
+    game.code = arr.join('');
+    numberEl.innerHTML = game.code;
 }
 
 function checkInput() {
     const num = 4269;
-    const check = num.split("");
+    const check = num.toString().split('');
     let wrongPlace, rightPlace = 0;
+
+    for (let i = 0; i < check.length; i++) {
+        (check[i])
+    }
 
     echoEl.innerHTML = `Trying ${num}... Numbers that are included but at the wrong place: ${wrongPlace}, numbers that are included and at the right place ${rightPlace}<br />`;
 }
