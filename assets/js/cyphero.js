@@ -21,15 +21,14 @@ window.onload = function () {
                         n = Math.floor(Math.random() * 10);
                     } while (arr.includes(n));
                 }
-
                 arr.push(n);
             }
+
             app.mystery = parseInt(arr.join(''));
             console.log(app.mystery);
         },
         checkInput: function (num) {
             // only execute if all digits are different
-
 
             const basis = Array.from(app.mystery.toString(), n => parseInt(n));
             const check = Array.from(num.toString(), n => parseInt(n));
@@ -66,6 +65,11 @@ window.onload = function () {
 
     const echoEl = document.getElementsByClassName('echo-el')[0];
     const inputEl = document.getElementsByClassName("input-el")[0];
+    inputEl.addEventListener('input', () => {
+        if (inputEl.value.length > inputEl.maxLength)
+            inputEl.value = inputEl.value.slice(0, inputEl.maxLength);
+    });
+
     const buttonEl = document.getElementsByClassName("button-el")[0];
     buttonEl.addEventListener("click", function () {
         console.log(app.ifDifferent(inputEl.value));
