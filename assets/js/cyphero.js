@@ -4,6 +4,7 @@ window.onload = function () {
         desc: 'Crack the Code!',
         year: 2023,
         publisher: 'Senrima Team',
+        developer: 'Viktor Szrenka',
         mystery: 0,
         returnTitle: function () {
             return `${this.title} | ${this.desc}`;
@@ -78,7 +79,7 @@ window.onload = function () {
     document.title = app.returnTitle();
 
     const footerEl = document.getElementsByTagName("footer")[0].getElementsByTagName("p")[0];
-    footerEl.innerHTML = `${app.returnTitle()} CC-BY-SA&nbsp;3.0 ${app.year} ${app.publisher}.`;
+    footerEl.innerHTML = `${app.returnTitle()} CC-BY-SA&nbsp;3.0 ${app.year} ${app.publisher}. Developed by: ${app.developer}`;
 
     const echoEl = document.getElementsByClassName('echo-el')[0];
     const inputEl = document.getElementsByClassName("input-el")[0];
