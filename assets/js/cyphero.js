@@ -37,7 +37,7 @@ window.onload = function () {
             console.log(check);
             let wrongPlace = 0, rightPlace = 0;
 
-            if (num === app.mystery) {
+            if (basis === check) {
                 app.playerWon();
             } else {
                 for (let i = 0; i < check.length; i++) {
