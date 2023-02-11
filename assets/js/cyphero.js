@@ -62,18 +62,18 @@ window.onload = function () {
 
             (rightPlace === 4)
                 ? app.playerWon()
-                : echoEl.innerHTML += `<p>Trying ${num}... Numbers that are included but at the wrong place: ${wrongPlace}, numbers that are included and at the right place ${rightPlace}</p>`;
+                : echoEl.innerHTML += `<p>Trying ${num}... Numbers that are included but in the wrong place: ${wrongPlace}, numbers that are included and in the right place ${rightPlace}.</p>`;
 
             inputEl.value = '';
         },
         playerWon: function () {
-            echoEl.innerHTML += `<p>Trying ${num}... Correct answer. Code cracked successfully!</p>`;
+            echoEl.innerHTML += `<p>Trying ${num}... Correct answer. Congratulations, code cracked successfully!</p>`;
         },
         ifValid: function (num) {
-            return (num[0] != 0 && num.length === 4 && num != null && num != Infinity/* && app.ifDifferent(num)*/);
+            return (num[0] != 0 && num.length === 4 && num != null && num != Infinity && app.ifDifferent(num));
         },
         ifDifferent: function (num) {
-            return true;
+            return (new Set(app.numToArray(num))).size === app.numToArray(num).length;
         },
     };
 
