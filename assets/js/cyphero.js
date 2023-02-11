@@ -51,7 +51,7 @@ window.onload = function () {
             echoEl.innerHTML += `Trying ${num}... Correct answer. Code cracked successfully!`;
         },
         ifDifferent: function (num) {
-            return (num != null && num != Infinity);
+            return (num.length != 0 && num != null && num != Infinity);
         },
     };
 
