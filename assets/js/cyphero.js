@@ -61,6 +61,8 @@ window.onload = function () {
             (rightPlace === 4)
                 ? app.playerWon()
                 : echoEl.innerHTML += `<p>Trying ${num}... Numbers that are included but at the wrong place: ${wrongPlace}, numbers that are included and at the right place ${rightPlace}</p>`;
+
+            inputEl.value = '';
         },
         playerWon: function () {
             echoEl.innerHTML += `<p>Trying ${num}... Correct answer. Code cracked successfully!</p>`;
