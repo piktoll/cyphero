@@ -25,35 +25,33 @@ window.onload = function () {
                 arr.push(n);
             }
             app.mystery = parseInt(arr.join(''));
-            numberEl.innerHTML = app.mystery;
+            // numberEl.innerHTML = app.mystery;
         },
         checkInput: function (num) {
-            console.log(num);
-            console.log(app.mystery);
+            // only execute if all digits are different
+
 
             const basis = Array.from(app.mystery.toString(), n => +n);
             const check = Array.from(num.toString(), n => +n);
 
-            console.log(check);
             let wrongPlace = 0, rightPlace = 0;
 
-            if (basis === check) {
-                console.log(basis);
-                console.log(check);
-                console.log(basis === check);
-                console.log(basis == check);
-                app.playerWon();
-            } else {
-                for (let i = 0; i < check.length; i++) {
-                    if (basis.includes(check[i]))
-                        wrongPlace++;
+            for (let i = 0; i < check.length; i++) {
+                if (basis.includes(check[i])) {
+                    console.log(i);
+                    console.log(basis.indexOf(check[i]));
+                    (basis.indexOf(check[i]) == i)
+                        ? rightPlace++
+                        : wrongPlace++;
                 }
-
-                echoEl.innerHTML = `Trying ${num}... Numbers that are included but at the wrong place: ${wrongPlace}, numbers that are included and at the right place ${rightPlace}<br />`;
             }
+
+            (rightPlace === 4)
+                ? app.playerWon()
+                : echoEl.innerHTML += `Trying ${num}... Numbers that are included but at the wrong place: ${wrongPlace}, numbers that are included and at the right place ${rightPlace}<br />`;
         },
         playerWon: function () {
-            echoEl.innerHTML = `Correct answer. Code cracked successfully!`;
+            echoEl.innerHTML += `Trying ${num}... Correct answer. Code cracked successfully!`;
         },
     };
 
