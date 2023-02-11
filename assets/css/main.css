@@ -37,7 +37,8 @@ hr {
     box-sizing: border-box;
     padding: 1rem;
     border-radius: var(--normal-radius);
-    height: 20rem;
+    height: 80vh;
+    overflow-y: scroll;
 }
 
 .user-el {
