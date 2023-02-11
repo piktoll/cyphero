@@ -10,7 +10,7 @@
     font-family: "Roboto Mono";
     font-display: swap;
     font-weight: 400;
-    src: url("./assets/fonts/RobotoMono-Variable.woff2") format("woff2");
+    src: url("../assets/fonts/RobotoMono-Variable.woff2") format("woff2");
 }
 
 * {
