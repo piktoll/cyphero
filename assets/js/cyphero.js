@@ -4,3 +4,42 @@ const inputEl = document.getElementsByClassName("input-el")[0];
 const footerEl = document.getElementsByClassName("footer-el")[0].getElementsByTagName("p")[0];
 const buttonEl = document.getElementsByClassName("button-el")[0];
 footerEl.innerHTML = `Cyphero CC-BY-SA&nbsp;3.0 2023 Senrima Team.`;
+buttonEl.addEventListener("click", checkInput);
+
+function generateNumber() {
+    let arr = [];
+
+    for (let i = 0; i < 4; i++) {
+        let n = 0;
+
+        if (i === 0) {
+            n = Math.floor(Math.random() * 9 + 1);
+        } else {
+            do {
+                n = Math.floor(Math.random() * 10);
+            } while (arr.includes(n));
+        }
+
+        arr.push(n);
+    }
+
+    numberEl.innerHTML += arr.join('') + '<br />';
+}
+
+function checkInput() {
+    const num = 4269;
+    const check = num.split('');
+    let wrongPlace, rightPlace = 0;
+
+    echoEl.innerHTML = `Trying ${num}... Numbers that are included but at the wrong place: ${wrongPlace}, numbers that are included and at the right place ${rightPlace}<br />`;
+}
+
+generateNumber();
+
+class main {
+    constructor() {
+
+    }
+}
+
+window.onload = new main();
