@@ -46,8 +46,7 @@ window.onload = function () {
         },
     };
 
-    const appTitle = app.returnTitle();
-    document.title = appTitle;
+    document.title = app.returnTitle();
 
     const headerEl = document.getElementsByTagName("header")[0];
     headerEl.innerHTML = `<h1>${app.title}</h1><h3>${app.desc}</h3>`;
