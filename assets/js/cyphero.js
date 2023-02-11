@@ -72,8 +72,8 @@ window.onload = function () {
 
     const buttonEl = document.getElementsByClassName("button-el")[0];
     buttonEl.addEventListener("click", function () {
-        console.log(app.ifDifferent(inputEl.value));
-        app.checkInput(inputEl.value);
+        if (app.ifDifferent(inputEl.value))
+            app.checkInput(inputEl.value);
     });
 
     app.generateNumber();
