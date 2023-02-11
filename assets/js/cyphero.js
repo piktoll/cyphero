@@ -63,5 +63,5 @@ window.onload = function () {
         checkInput(inputEl.value);
     });
 
-    generateNumber();
+    app.generateNumber();
 }
