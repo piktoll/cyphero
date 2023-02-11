@@ -10,6 +10,7 @@ window.onload = function () {
         },
         startGame: function () {
             app.mystery = app.generateNumber();
+            echoEl.innerHTML += `<p>${app.title} ${app.desc}</p>`;
             echoEl.innerHTML += `<p>Welcome to Cyphero! The game is all about cracking a 4-digit code. The code consists of four different digits and the first digit cannot be zero. Happy guessing!</p>`;
         },
         generateNumber: function () {
@@ -59,9 +60,6 @@ window.onload = function () {
     };
 
     document.title = app.returnTitle();
-
-    const headerEl = document.getElementsByTagName("header")[0];
-    headerEl.innerHTML = `<h1>${app.title}</h1><h3>${app.desc}</h3>`;
 
     const footerEl = document.getElementsByTagName("footer")[0].getElementsByTagName("p")[0];
     footerEl.innerHTML = `${app.returnTitle()} CC-BY-SA&nbsp;3.0 ${app.year} ${app.publisher}.`;
