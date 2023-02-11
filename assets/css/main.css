@@ -21,6 +21,7 @@
     box-sizing: border-box;
     padding: 1rem;
     border-radius: var(--normal-radius);
+    height: 40rem;
 }
 
 .input-el,
