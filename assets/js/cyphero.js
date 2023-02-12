@@ -43,7 +43,7 @@ window.onload = function () {
             /*
                 We will only process input if it is valid and all digits are different
             */
-            if (app.ifValid(num) && app.ifDifferent(num)) {
+            if (app.ifValid(num) && app.ifDifferent(num) && app.ifLongEnough(num) && app.ifFirstNotZero(num)) {
                 const basis = app.numToArray(app.mystery);
                 const check = app.numToArray(num);
                 let wrongPlace = 0, rightPlace = 0;
@@ -63,12 +63,18 @@ window.onload = function () {
                 (rightPlace === 4)
                     ? app.playerWon()
                     : echoEl.innerHTML += `<p>Trying ${num}... Numbers that are included but in the wrong place: ${wrongPlace}, numbers that are included and in the right place ${rightPlace}.</p>`;
-            } else if (app.ifValid(num)) {
+            } else if (!app.ifDifferent(num)) {
                 /* Not all digits are different but the input is valid nonetheless. */
                 echoEl.innerHTML += `<p>Trying ${num}... Invalid attempt. All digits must be different.</p>`;
-            } else {
+            } else if (!app.ifLongEnough(num)) {
+                /* The input is less than 4 digits. */
+                echoEl.innerHTML += `<p>Trying ${num}... Invalid attempt. The input must be exactly four digits.</p>`;
+            } else if (!app.ifFirstNotZero(num)) {
                 /* The input is different but invalid. */
                 echoEl.innerHTML += `<p>Trying ${num}... Invalid attempt. The first digit cannot be zero.</p>`;
+            } else {
+                /* The input is invalid for other reasons. */
+                echoEl.innerHTML += `<p>Trying ${num}... Invalid attempt.</p>`;
             }
 
             inputEl.value = '';
@@ -79,10 +85,16 @@ window.onload = function () {
             buttonEl.style.display = 'none';
         },
         ifValid: function (num) {
-            return (num[0] != 0 && num.length === 4 && num != null && num != Infinity);
+            return (num != null && num != Infinity);
+        },
+        ifLongEnough: function (num) {
+            return (num.length === 4);
         },
         ifDifferent: function (num) {
             return (new Set(app.numToArray(num))).size === app.numToArray(num).length;
+        },
+        ifFirstNotZero: function (num) {
+            return (num[0] != 0);
         },
     };
 
@@ -93,15 +105,25 @@ window.onload = function () {
 
     const echoEl = document.getElementsByClassName('echo-el')[0];
     const inputEl = document.getElementsByClassName("input-el")[0];
-    inputEl.addEventListener('input', () => {
+    inputEl.addEventListener("input", () => {
         if (inputEl.value.length > inputEl.maxLength)
             inputEl.value = inputEl.value.slice(0, inputEl.maxLength);
+        /* Negative values and fractions are forbidden. */
+        inputEl.value = Math.abs(Math.floor(inputEl.value));
     });
 
     const buttonEl = document.getElementsByClassName("button-el")[0];
 
-    buttonEl.addEventListener("click", function () {
+    buttonEl.addEventListener("click", () => {
         app.checkInput(inputEl.value);
+    });
+
+    inputEl.addEventListener("keydown", function (event) {
+        const key = event.key;
+
+        if (key == "Enter") { 
+            app.checkInput(inputEl.value);
+        }
     });
 
     app.startGame();
