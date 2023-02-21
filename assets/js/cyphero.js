@@ -9,6 +9,9 @@ window.onload = function () {
         returnTitle: function () {
             return `${this.title} | ${this.desc}`;
         },
+        returnNotice: function () {
+            return `${app.returnTitle()} CC-BY-SA&nbsp;3.0 ${app.year} ${app.publisher}. Developed by: ${app.developer}`;
+        },
         startGame: function () {
             app.mystery = app.generateNumber();
 
@@ -60,9 +63,15 @@ window.onload = function () {
                     }
                 }
 
-                (rightPlace === 4)
-                    ? app.playerWon()
-                    : echoEl.innerHTML += `<p>Trying ${num}... Numbers that are included but in the wrong place: ${wrongPlace}, numbers that are included and in the right place ${rightPlace}.</p>`;
+                if (rightPlace === 4) {
+                    // the player guessed right
+                    echoEl.innerHTML += `<p>Trying ${num}... Correct answer. Congratulations, code cracked successfully!</p>`;
+                    inputEl.style.display = 'none';
+                    buttonEl.style.display = 'none';
+                } else {
+                    echoEl.innerHTML += `<p>Trying ${num}... Numbers that are included but in the wrong place: ${wrongPlace}, numbers that are included and in the right place ${rightPlace}.</p>`;
+                }
+
             } else if (!app.ifDifferent(num)) {
                 /* Not all digits are different but the input is valid nonetheless. */
                 echoEl.innerHTML += `<p>Trying ${num}... Invalid attempt. All digits must be different.</p>`;
@@ -78,11 +87,6 @@ window.onload = function () {
             }
 
             inputEl.value = '';
-        },
-        playerWon: function () {
-            echoEl.innerHTML += `<p>Trying ${num}... Correct answer. Congratulations, code cracked successfully!</p>`;
-            inputEl.style.display = 'none';
-            buttonEl.style.display = 'none';
         },
         ifValid: function (num) {
             return (num != null && num != Infinity);
@@ -100,21 +104,21 @@ window.onload = function () {
 
     document.title = app.returnTitle();
 
-    const footerEl = document.getElementsByTagName("footer")[0].getElementsByTagName("p")[0];
-    footerEl.innerHTML = `${app.returnTitle()} CC-BY-SA&nbsp;3.0 ${app.year} ${app.publisher}. Developed by: ${app.developer}`;
+    const footerEl = document.querySelector('footer').querySelector('p');
+    footerEl.innerHTML = app.returnNotice();
 
-    const echoEl = document.getElementsByClassName('echo-el')[0];
-    const inputEl = document.getElementsByClassName("input-el")[0];
-    inputEl.addEventListener("input", () => {
+    const echoEl = document.querySelector('.echo-el');
+    const inputEl = document.querySelector('.input-el');
+    inputEl.addEventListener('input', function () {
         if (inputEl.value.length > inputEl.maxLength)
             inputEl.value = inputEl.value.slice(0, inputEl.maxLength);
         /* Negative values and fractions are forbidden. */
         inputEl.value = Math.abs(Math.floor(inputEl.value));
     });
 
-    const buttonEl = document.getElementsByClassName("button-el")[0];
+    const buttonEl = document.querySelector('.button-el');
 
-    buttonEl.addEventListener("click", () => {
+    buttonEl.addEventListener("click", function () {
         app.checkInput(inputEl.value);
     });
 
